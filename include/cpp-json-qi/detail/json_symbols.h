@@ -4,7 +4,6 @@
 #include <cctype>
 #include <cwctype>
 
-// Enable compiling with /Wall under VC
 #if defined(_MSC_VER)
 #pragma warning( push )
 // disable warning from boost headers
