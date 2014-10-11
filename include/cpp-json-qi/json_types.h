@@ -41,7 +41,7 @@ namespace jsonqi {
     class are_strict_equals
       : public boost::static_visitor<bool> {
     private:
-      typedef typename basic_json_traits<CharT> json_traits;
+      typedef basic_json_traits<CharT> json_traits;
 
       typedef typename json_traits::null_type   null_type;
       typedef typename json_traits::bool_type   bool_type;
@@ -111,7 +111,7 @@ namespace jsonqi {
     class is_empty
       : public boost::static_visitor<bool> {
     private:
-      typedef typename basic_json_traits<CharT> json_traits;
+      typedef basic_json_traits<CharT> json_traits;
 
       typedef typename json_traits::null_type   null_type;
       typedef typename json_traits::bool_type   bool_type;
@@ -155,7 +155,7 @@ namespace jsonqi {
     class is_compound
       : public boost::static_visitor<bool> {
     private:
-      typedef typename basic_json_traits<CharT> json_traits;
+      typedef basic_json_traits<CharT> json_traits;
       typedef typename json_traits::array_type  array_type;
       typedef typename json_traits::object_type object_type;
 
@@ -185,7 +185,7 @@ namespace jsonqi {
     typedef json_value_impl<CharT> self_type;
     typedef self_type              this_type;
 
-    typedef typename basic_json_traits<CharT> json_traits;
+    typedef basic_json_traits<CharT> json_traits;
 
     typedef typename json_traits::null_type   null_type;
     typedef typename json_traits::bool_type   bool_type;
@@ -208,7 +208,7 @@ namespace jsonqi {
 
   public:
     json_value_impl()
-      : v_(json_null()) {
+      : v_(null_type()) {
     }
 
     json_value_impl(const null_type& value)
@@ -245,7 +245,7 @@ namespace jsonqi {
     }
 
     void clear() {
-      v_ = json_null();
+      v_ = null_type();
     }
 
     bool is_null() const {
@@ -324,31 +324,31 @@ namespace jsonqi {
   template <typename CharT>
   const typename basic_json_traits<CharT>::bool_type& to_bool(const json_value_impl<CharT>& value) {
     typedef typename basic_json_traits<CharT>::bool_type bool_type;
-    return value.get_value<bool_type>();
+    return value.template get_value<bool_type>();
   }
 
   template <typename CharT>
   const typename basic_json_traits<CharT>::number_type& to_number(const json_value_impl<CharT>& value) {
     typedef typename basic_json_traits<CharT>::number_type number_type;
-    return value.get_value<number_type>();
+    return value.template get_value<number_type>();
   }
 
   template <typename CharT>
   const typename basic_json_traits<CharT>::string_type& to_string(const json_value_impl<CharT>& value) {
     typedef typename basic_json_traits<CharT>::string_type string_type;
-    return value.get_value<string_type>();
+    return value.template get_value<string_type>();
   }
 
   template <typename CharT>
   const typename basic_json_traits<CharT>::array_type& to_array(const json_value_impl<CharT>& value) {
     typedef typename basic_json_traits<CharT>::array_type array_type;
-    return value.get_value<array_type>();
+    return value.template get_value<array_type>();
   }
 
   template <typename CharT>
   const typename basic_json_traits<CharT>::object_type& to_object(const json_value_impl<CharT>& value) {
     typedef typename basic_json_traits<CharT>::object_type object_type;
-    return value.get_value<object_type>();
+    return value.template get_value<object_type>();
   }
 
 

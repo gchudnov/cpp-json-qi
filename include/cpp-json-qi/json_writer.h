@@ -20,8 +20,8 @@ namespace jsonqi {
 
       size_t    indent;
 
-      explicit indent_params(const indent_formatter& formatter, size_t ind = 0)
-        : indent_formatter(formatter),
+      explicit indent_params(const indent_formatter<CharT>& formatter, size_t ind = 0)
+        : indent_formatter<CharT>(formatter),
         indent(ind) {
       }
     };
@@ -79,8 +79,8 @@ namespace jsonqi {
         ostringstream_type oss;
 
         oss << symbols::quatation_mark;
-        for (string_type::const_iterator it = str.begin(); it != str.end(); ++it) {
-          const string_type::value_type& ch = *it;
+        for (typename string_type::const_iterator it = str.begin(); it != str.end(); ++it) {
+          const typename string_type::value_type& ch = *it;
           switch (ch) {
           case symbols::quatation_mark:
             oss << symbols::tag_quatation_mark_start();
@@ -152,7 +152,7 @@ namespace jsonqi {
         if (!arr.empty()) {
           detail::scope_increment inc(params_.indent);
 
-          array_type::const_iterator it = arr.begin();
+          typename array_type::const_iterator it = arr.begin();
           oss << detail::indent<char_type>(params_.indent) << this->operator()(*it);
 
           ++it;
@@ -174,7 +174,7 @@ namespace jsonqi {
         if (!obj.empty()) {
           detail::scope_increment inc(params_.indent);
 
-          object_type::const_iterator it = obj.begin();
+          typename object_type::const_iterator it = obj.begin();
           oss << detail::indent<char_type>(params_.indent) << this->operator()(*it);
 
           ++it;

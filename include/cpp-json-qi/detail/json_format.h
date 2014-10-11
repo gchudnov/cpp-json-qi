@@ -1,6 +1,6 @@
 #pragma once
 
-#include "detail/json_symbols.h"
+#include "json_symbols.h"
 
 #include <string>
 #include <ios>
@@ -38,7 +38,7 @@ namespace jsonqi {
 
     template <typename CharT>
     void set_fill_char(std::basic_ostream<CharT>& os) {
-      CharT fill_char = get_fill_char(os);
+      CharT ch = get_fill_char(os);
       if (detail::json_symbols<CharT>::isprint(ch)) {
         os.fill(ch);
       }

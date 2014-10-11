@@ -405,8 +405,8 @@ namespace jsonqi {
     string_type storage;
     is.unsetf(std::ios::skipws);
     std::copy(iterator_type(is), iterator_type(), std::back_inserter(storage));
-    string_type::const_iterator first = storage.begin();
-    string_type::const_iterator last = storage.end();
+    typename string_type::const_iterator first = storage.begin();
+    typename string_type::const_iterator last = storage.end();
 
     //boost::spirit::multi_pass<base_iterator_type> first = boost::spirit::make_default_multi_pass(base_iterator_type(is));
     //boost::spirit::multi_pass<base_iterator_type> last = boost::spirit::make_default_multi_pass(base_iterator_type());
