@@ -1,7 +1,6 @@
-#include <stdlib.h>
 #include <gtest/gtest.h>
 
-#pragma comment(lib, "gtestd.lib")
+//#pragma comment(lib, "gtestd.lib")
 
 int main(int argc, char* argv[])
 {
