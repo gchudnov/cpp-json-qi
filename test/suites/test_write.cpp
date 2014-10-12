@@ -1,11 +1,9 @@
 #include "gtest/gtest.h"
 #include "../../include/cpp-json-qi/json.h"
 
-///////////////////////////////////////////////////////////////////////////////
-TEST(JsonTest, ConBeWritten)
-{
-  using namespace jsonqi;
+using namespace jsonqi;
 
+TEST(JsonValue, CanBeWrittenToStringWithoutIndent) {
   json_object child;
   child["param1"] = 12.0;
 
@@ -15,6 +13,33 @@ TEST(JsonTest, ConBeWritten)
   arr.push_back(3.0);
   arr.push_back(child);
 
+  json_object root;
+  root["my_var0"] = json_null();
+  root["my_var1"] = true;
+  root["my_var2"] = false;
+  root["my_var3"] = json_string("text value");
+  root["my_var4"] = 8.0;
+  root["my_var5"] = arr;
+
+  std::ostringstream oss;
+  oss << json_value(root);
+
+  std::string actual = oss.str();
+  ASSERT_TRUE(!actual.empty());
+
+  std::string expected("{ \"my_var0\": null, \"my_var1\": true, \"my_var2\": false, \"my_var3\": \"text value\", \"my_var4\": 8, \"my_var5\": [ 1, 2, 3, { \"param1\": 12 } ] }");
+  ASSERT_EQ(expected, actual);
+}
+
+TEST(JsonValue, CanBeWrittenToStringWithIndent) {
+  json_object child;
+  child["param1"] = 12.0;
+
+  json_array arr;
+  arr.push_back(1.0);
+  arr.push_back(2.0);
+  arr.push_back(3.0);
+  arr.push_back(child);
 
   json_object root;
   root["my_var0"] = json_null();
@@ -24,29 +49,31 @@ TEST(JsonTest, ConBeWritten)
   root["my_var4"] = 8.0;
   root["my_var5"] = arr;
 
-  // without indent
   std::ostringstream oss;
-  oss << json_value(root);
+  oss << format() << json_value(root);
 
-  std::string data = oss.str();
-  ASSERT_TRUE(!data.empty());
-  ASSERT_EQ(142, data.size());
+  std::string actual = oss.str();
+  ASSERT_TRUE(!actual.empty());
 
-
-  // with indent
-  std::ostringstream oss2;
-  oss2 << format() << json_value(root);
-
-  std::string data2 = oss2.str();
-  ASSERT_TRUE(!data2.empty());
-  ASSERT_EQ(182, data2.size());
+  std::string expected("{\n"
+    "  \"my_var0\": null,\n"
+    "  \"my_var1\": true,\n"
+    "  \"my_var2\": false,\n"
+    "  \"my_var3\": \"text value\",\n"
+    "  \"my_var4\": 8,\n"
+    "  \"my_var5\": [\n"
+    "    1,\n"
+    "    2,\n"
+    "    3,\n"
+    "    {\n"
+    "      \"param1\": 12\n"
+    "    }\n"
+    "  ]\n"
+    "}");
+  ASSERT_EQ(expected, actual);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-TEST(JsonTest, WideCharacters)
-{
-  using namespace jsonqi;
-
+TEST(JsonValue, CanBeWrittenToWString) {
   wjson_array warr;
   json_array  arr;
   warr.push_back(wjson_string(L"Test String"));
