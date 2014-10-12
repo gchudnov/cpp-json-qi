@@ -32,7 +32,7 @@ namespace jsonqi {
       static const char* const tag_true() { return "true"; }
       static const char* const tag_false() { return "false"; }
 
-      static const char* const tag_pair_separator() { return " : "; }
+      static const char* const tag_pair_separator() { return ": "; }
 
       static const char quatation_mark = '"';
       static const char reverse_solidus = '\\';
