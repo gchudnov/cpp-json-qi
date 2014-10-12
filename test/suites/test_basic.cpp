@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <string>
 #include "../../include/cpp-json-qi/json.h"
 
 using namespace jsonqi;
