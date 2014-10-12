@@ -317,7 +317,7 @@ namespace jsonqi {
     if (!value.is_null())
       throw boost::bad_get();
 
-    static const null_type result;
+    static const null_type result = null_type();
     return result;
   }
 
