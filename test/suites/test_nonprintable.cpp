@@ -1,37 +1,30 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "../../include/cpp-json-qi/json.h"
 
+#include <iostream>
 
-TEST(JsonTest, NonPrintableNarrowCanBeWritten)
-{
-  using namespace jsonqi;
+using namespace jsonqi;
 
+TEST(ASCIICharacters, CanBeWritten) {
   json_array arr;
-  arr.push_back(json_string("äöüß"));
-  //arr.push_back(json_string("\a"));
+  arr.push_back(json_string("äöüß")); // UTF-8
 
   std::ostringstream oss;
   oss << json_value(arr);
 
-  std::string data = oss.str();
-  ASSERT_TRUE(!data.empty());
-  ASSERT_EQ(std::string("[ \"\\u00e4\\u00f6\\u00fc\\u00df\" ]"), data);
+  std::string actual = oss.str();
+  ASSERT_TRUE(!actual.empty());
+  ASSERT_EQ(std::string("[ \"\\u00c3\\u00a4\\u00c3\\u00b6\\u00c3\\u00bc\\u00c3\\u009f\" ]"), actual);
 }
 
-
-TEST(JsonTest, NonPrintableWideCanBeWritten)
-{
-  using namespace jsonqi;
-
-  wjson_array warr;
-  warr.push_back(wjson_string(L"äöüß"));
-
-  //wjson_string ws(L"δοκιμή");
+TEST(WideCharacters, CanBeWritten) {
+  wjson_array arr;
+  arr.push_back(wjson_string(L"äöüß")); // UTF-8
 
   std::wostringstream oss;
-  oss << wjson_value(warr);
+  oss << wjson_value(arr);
 
-  std::wstring data = oss.str();
-  ASSERT_TRUE(!data.empty());
-  ASSERT_EQ(std::wstring(L"[ \"äöüß\" ]"), data);
+  std::wstring actual = oss.str();
+  ASSERT_TRUE(!actual.empty());
+  ASSERT_EQ(std::wstring(L"[ \"\\u00e4\\u00f6\\u00fc\\u00df\" ]"), actual);
 }

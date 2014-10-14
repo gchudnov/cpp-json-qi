@@ -10,6 +10,7 @@ set(SOURCE_TEST_FILES
     test/suites/test_basic.cpp
     test/suites/test_compare.cpp
     test/suites/test_conv.cpp
+    test/suites/test_nonprintable.cpp
     test/suites/test_write.cpp
     test/tester.cpp)
 
