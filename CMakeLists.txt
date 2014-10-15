@@ -7,10 +7,18 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(SOURCE_TEST_FILES
+    include/cpp-json-qi/detail/json_format.h
+    include/cpp-json-qi/detail/json_symbols.h
+    include/cpp-json-qi/json.h
+    include/cpp-json-qi/json_error.h
+    include/cpp-json-qi/json_reader.h
+    include/cpp-json-qi/json_types.h
+    include/cpp-json-qi/json_writer.h
     test/suites/test_basic.cpp
     test/suites/test_compare.cpp
     test/suites/test_conv.cpp
     test/suites/test_nonprintable.cpp
+    test/suites/test_read.cpp
     test/suites/test_write.cpp
     test/tester.cpp)
 

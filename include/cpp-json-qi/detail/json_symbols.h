@@ -34,25 +34,25 @@ namespace jsonqi {
 
       static const char* const tag_pair_separator() { return ": "; }
 
-      static const char quatation_mark = '"';
-      static const char reverse_solidus = '\\';
-      static const char solidus = '/';
-      static const char backspace = '\b';
-      static const char formfeed = '\f';
-      static const char newline = '\n';
-      static const char carriage_return = '\r';
-      static const char horizontal_tab = '\t';
+      static constexpr const char quotation_mark() { return '"'; }
+      static constexpr const char reverse_solidus() { return '\\'; }
+      static constexpr const char solidus() { return '/'; }
+      static constexpr const char backspace() { return '\b'; }
+      static constexpr const char formfeed() { return '\f'; }
+      static constexpr const char newline() { return '\n'; }
+      static constexpr const char carriage_return() { return '\r'; }
+      static constexpr const char horizontal_tab() { return '\t'; }
 
-      static const char open_square_bracket = '[';
-      static const char close_square_bracket = ']';
-      static const char open_curly_bracket = '{';
-      static const char close_curly_bracket = '}';
-      static const char comma = ',';
-      static const char zero = '0';
-      static const char space = ' ';
-      static const char colon = ':';
+      static constexpr const char open_square_bracket() { return '['; }
+      static constexpr const char close_square_bracket() { return ']'; }
+      static constexpr const char open_curly_bracket() { return '{'; }
+      static constexpr const char close_curly_bracket() { return '}'; }
+      static constexpr const char comma() { return ','; }
+      static constexpr const char zero() { return '0'; }
+      static constexpr const char space() { return ' '; }
+      static constexpr const char colon() { return ':'; }
 
-      static const char* const tag_quatation_mark_start() { return "\\\""; }
+      static const char* const tag_quotation_mark_start() { return "\\\""; }
       static const char* const tag_reverse_solidus_start() { return "\\\\"; }
       static const char* const tag_solidus_start() { return "\\/"; }
       static const char* const tag_backspace_start() { return "\\b"; }
@@ -79,25 +79,25 @@ namespace jsonqi {
 
       static const wchar_t* const tag_pair_separator() { return L" : "; }
 
-      static const wchar_t quatation_mark = L'"';
-      static const wchar_t reverse_solidus = L'\\';
-      static const wchar_t solidus = L'/';
-      static const wchar_t backspace = L'\b';
-      static const wchar_t formfeed = L'\f';
-      static const wchar_t newline = L'\n';
-      static const wchar_t carriage_return = L'\r';
-      static const wchar_t horizontal_tab = L'\t';
+      static constexpr const wchar_t quotation_mark() { return L'"'; }
+      static constexpr const wchar_t reverse_solidus() { return L'\\'; }
+      static constexpr const wchar_t solidus() { return L'/'; }
+      static constexpr const wchar_t backspace() { return L'\b'; }
+      static constexpr const wchar_t formfeed() { return L'\f'; }
+      static constexpr const wchar_t newline() { return L'\n'; }
+      static constexpr const wchar_t carriage_return() { return L'\r'; }
+      static constexpr const wchar_t horizontal_tab() { return L'\t'; }
 
-      static const wchar_t open_square_bracket = L'[';
-      static const wchar_t close_square_bracket = L']';
-      static const wchar_t open_curly_bracket = L'{';
-      static const wchar_t close_curly_bracket = L'}';
-      static const wchar_t comma = L',';
-      static const wchar_t zero = L'0';
-      static const wchar_t space = L' ';
-      static const wchar_t colon = L':';
+      static constexpr const wchar_t open_square_bracket() { return L'['; }
+      static constexpr const wchar_t close_square_bracket() { return L']'; }
+      static constexpr const wchar_t open_curly_bracket() { return L'{'; }
+      static constexpr const wchar_t close_curly_bracket() { return L'}'; }
+      static constexpr const wchar_t comma() { return L','; }
+      static constexpr const wchar_t zero() { return L'0'; }
+      static constexpr const wchar_t space() { return L' '; }
+      static constexpr const wchar_t colon() { return L':'; }
 
-      static const wchar_t* const tag_quatation_mark_start() { return L"\\\""; }
+      static const wchar_t* const tag_quotation_mark_start() { return L"\\\""; }
       static const wchar_t* const tag_reverse_solidus_start() { return L"\\\\"; }
       static const wchar_t* const tag_solidus_start() { return L"\\/"; }
       static const wchar_t* const tag_backspace_start() { return L"\\b"; }

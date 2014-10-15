@@ -122,22 +122,22 @@ namespace jsonqi {
 
   public:
     void on_object_begin(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::open_curly_bracket); ch;
+      assert(ch == symbols::open_curly_bracket()); ch;
       this->add_begin(object_type());
     }
 
     void on_object_end(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::close_curly_bracket); ch;
+      assert(ch == symbols::close_curly_bracket()); ch;
       this->add_end();
     }
 
     void on_array_begin(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::open_square_bracket); ch;
+      assert(ch == symbols::open_square_bracket()); ch;
       this->add_begin(array_type());
     }
 
     void on_array_end(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::close_square_bracket); ch;
+      assert(ch == symbols::close_square_bracket()); ch;
       this->add_end();
     }
 
@@ -249,14 +249,14 @@ namespace jsonqi {
       namespace qi = boost::spirit::qi;
       namespace repo = boost::spirit::repository;
 
-      resc_char.add(symbols::tag_quatation_mark_start(), symbols::quatation_mark)
-        (symbols::tag_reverse_solidus_start(), symbols::reverse_solidus)
-        (symbols::tag_solidus_start(), symbols::solidus)
-        (symbols::tag_backspace_start(), symbols::backspace)
-        (symbols::tag_formfeed_start(), symbols::formfeed)
-        (symbols::tag_newline_start_start(), symbols::newline)
-        (symbols::tag_carriage_return_start(), symbols::carriage_return)
-        (symbols::tag_horizontal_tab_start(), symbols::horizontal_tab)
+      resc_char.add(symbols::tag_quotation_mark_start(), symbols::quotation_mark())
+        (symbols::tag_reverse_solidus_start(), symbols::reverse_solidus())
+        (symbols::tag_solidus_start(), symbols::solidus())
+        (symbols::tag_backspace_start(), symbols::backspace())
+        (symbols::tag_formfeed_start(), symbols::formfeed())
+        (symbols::tag_newline_start_start(), symbols::newline())
+        (symbols::tag_carriage_return_start(), symbols::carriage_return())
+        (symbols::tag_horizontal_tab_start(), symbols::horizontal_tab())
         //(symbols::tag_non_printable_start(), symbols::)
         ;
 
@@ -274,9 +274,9 @@ namespace jsonqi {
       rstring
         = qi::lexeme
         [
-          repo::confix(symbols::quatation_mark, symbols::quatation_mark)[*(resc_char | (qi::char_ - symbols::quatation_mark))]
-          //qi::omit[symbols::quatation_mark] >> *(resc_char | (qi::char_ - symbols::quatation_mark)) >> qi::omit[symbols::quatation_mark]
-          //repo::confix(symbols::quatation_mark, symbols::quatation_mark)[*(qi::char_ - symbols::quatation_mark)]
+          repo::confix(symbols::quotation_mark(), symbols::quotation_mark())[*(resc_char | (qi::char_ - symbols::quotation_mark()))]
+          //qi::omit[symbols::quotation_mark] >> *(resc_char | (qi::char_ - symbols::quotation_mark)) >> qi::omit[symbols::quotation_mark]
+          //repo::confix(symbols::quotation_mark, symbols::quotation_mark)[*(qi::char_ - symbols::quotation_mark)]
         ]
       ;
 
@@ -285,29 +285,29 @@ namespace jsonqi {
         ;
 
       relements
-        = rvalue > *(symbols::comma > rvalue)
+        = rvalue > *(symbols::comma() > rvalue)
         ;
 
       rarray
-        = qi::char_(symbols::open_square_bracket)[on_array_begin]
+        = qi::char_(symbols::open_square_bracket())[on_array_begin]
             > *relements
-            > qi::char_(symbols::close_square_bracket)[on_array_end]
+            > qi::char_(symbols::close_square_bracket())[on_array_end]
             ;
 
       rpair
         = rstring[on_pair_key]
-            > qi::char_(symbols::colon)
+            > qi::char_(symbols::colon())
             > rvalue
             ;
 
       rmembers
-        = rpair > *(symbols::comma > rpair)
+        = rpair > *(symbols::comma() > rpair)
         ;
 
       robject
-        = qi::char_(symbols::open_curly_bracket)[on_object_begin]
+        = qi::char_(symbols::open_curly_bracket())[on_object_begin]
             > *rmembers
-            > qi::char_(symbols::close_curly_bracket)[on_object_end]
+            > qi::char_(symbols::close_curly_bracket())[on_object_end]
             ;
 
       rvalue

@@ -78,39 +78,39 @@ namespace jsonqi {
       string_type operator()(const string_type& str) const {
         ostringstream_type oss;
 
-        oss << symbols::quatation_mark;
+        oss << symbols::quotation_mark();
         for (typename string_type::const_iterator it = str.begin(); it != str.end(); ++it) {
           const typename string_type::value_type& ch = *it;
           switch (ch) {
-          case symbols::quatation_mark:
-            oss << symbols::tag_quatation_mark_start();
+          case symbols::quotation_mark():
+            oss << symbols::tag_quotation_mark_start();
             break;
 
-          case symbols::reverse_solidus:
+          case symbols::reverse_solidus():
             oss << symbols::tag_reverse_solidus_start();
             break;
 
-            //case symbols::solidus:
+            //case symbols::solidus():
             //    oss << symbols::tag_solidus_start();
             //    break;
 
-          case symbols::backspace:
+          case symbols::backspace():
             oss << symbols::tag_backspace_start();
             break;
 
-          case symbols::formfeed:
+          case symbols::formfeed():
             oss << symbols::tag_formfeed_start();
             break;
 
-          case symbols::newline:
+          case symbols::newline():
             oss << symbols::tag_newline_start_start();
             break;
 
-          case symbols::carriage_return:
+          case symbols::carriage_return():
             oss << symbols::tag_carriage_return_start();
             break;
 
-          case symbols::horizontal_tab:
+          case symbols::horizontal_tab():
             oss << symbols::tag_horizontal_tab_start();
             break;
 
@@ -121,13 +121,13 @@ namespace jsonqi {
             else {
               // we have a non-printable character, convert it to 4 hexadecimal digts
               uint16_t uch = static_cast<uint16_t>(static_cast<unsigned char>(ch));
-              oss << symbols::tag_non_printable_start() << std::setfill(symbols::zero) << std::setw(4) << std::hex << uch;
+              oss << symbols::tag_non_printable_start() << std::setfill(symbols::zero()) << std::setw(4) << std::hex << uch;
             }
           }
             break;
           }
         }
-        oss << symbols::quatation_mark;
+        oss << symbols::quotation_mark();
 
         return oss.str();
       }
@@ -148,7 +148,7 @@ namespace jsonqi {
         ostringstream_type oss;
         this->set_stream_params(oss);
 
-        oss << /*detail::indent<char_type>(ind_) <<*/ symbols::open_square_bracket;
+        oss << /*detail::indent<char_type>(ind_) <<*/ symbols::open_square_bracket();
         if (!arr.empty()) {
           detail::scope_increment inc(params_.indent);
 
@@ -157,11 +157,11 @@ namespace jsonqi {
 
           ++it;
           while (it != arr.end()) {
-            oss << symbols::comma << detail::indent<char_type>(params_.indent) << this->operator()(*it);
+            oss << symbols::comma() << detail::indent<char_type>(params_.indent) << this->operator()(*it);
             ++it;
           }
         }
-        oss << detail::indent<char_type>(params_.indent) << symbols::close_square_bracket;
+        oss << detail::indent<char_type>(params_.indent) << symbols::close_square_bracket();
 
         return oss.str();
       }
@@ -170,7 +170,7 @@ namespace jsonqi {
         ostringstream_type oss;
         this->set_stream_params(oss);
 
-        oss << /*detail::indent<char_type>(ind_) <<*/ symbols::open_curly_bracket;
+        oss << /*detail::indent<char_type>(ind_) <<*/ symbols::open_curly_bracket();
         if (!obj.empty()) {
           detail::scope_increment inc(params_.indent);
 
@@ -179,11 +179,11 @@ namespace jsonqi {
 
           ++it;
           while (it != obj.end()) {
-            oss << symbols::comma << detail::indent<char_type>(params_.indent) << this->operator()(*it);
+            oss << symbols::comma() << detail::indent<char_type>(params_.indent) << this->operator()(*it);
             ++it;
           }
         }
-        oss << detail::indent<char_type>(params_.indent) << symbols::close_curly_bracket;
+        oss << detail::indent<char_type>(params_.indent) << symbols::close_curly_bracket();
 
         return oss.str();
       }

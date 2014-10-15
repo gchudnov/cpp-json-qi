@@ -25,7 +25,7 @@ namespace jsonqi {
 
     template <typename CharT>
     CharT get_fill_char(std::basic_ostream<CharT>& os) {
-      return (is_formatted(os) ? static_cast<CharT>(os.iword(fill_char_index)) : detail::json_symbols<CharT>::space);
+      return (is_formatted(os) ? static_cast<CharT>(os.iword(fill_char_index)) : detail::json_symbols<CharT>::space());
     }
 
     template <typename CharT>
@@ -87,21 +87,21 @@ namespace jsonqi {
 
 
   // FORMAT
-  inline indent_formatter<char> format(char ch = detail::json_symbols<char>::space) {
+  inline indent_formatter<char> format(char ch = detail::json_symbols<char>::space()) {
     return indent_formatter<char>(true, ch);
   }
 
-  inline indent_formatter<wchar_t> wformat(wchar_t ch = detail::json_symbols<wchar_t>::space) {
+  inline indent_formatter<wchar_t> wformat(wchar_t ch = detail::json_symbols<wchar_t>::space()) {
     return indent_formatter<wchar_t>(true, ch);
   }
 
   // DO NOT FORMAT
   inline indent_formatter<char> noformat() {
-    return indent_formatter<char>(false, detail::json_symbols<char>::space);
+    return indent_formatter<char>(false, detail::json_symbols<char>::space());
   }
 
   inline indent_formatter<wchar_t> wnoformat() {
-    return indent_formatter<wchar_t>(false, detail::json_symbols<wchar_t>::space);
+    return indent_formatter<wchar_t>(false, detail::json_symbols<wchar_t>::space());
   }
 
 
