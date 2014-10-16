@@ -10,3 +10,8 @@ A C++ JSON reader-writer, implemented with Boost.Spirit
 * **examples** - cpp-json-qi examples
 * **include** - the sourcecode of cpp-json-qi
 * **test** - cpp-json-qi unit tests
+
+### More information
+
+* [Wiki](https://github.com/gchudnov/cpp-json-qi/wiki)
+
