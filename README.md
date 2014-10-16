@@ -15,11 +15,18 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 
 * [Wiki](https://github.com/gchudnov/cpp-json-qi/wiki)
 
-
 ### Tested compilers
 
 * Linux (x86/64)
    * GCC 4.8, Boost 1.54
+   * Clang 3.4, Boost 1.54
+
+### Building tests
+```
+cd cpp-json-qi
+ccmake .
+make
+```
 
 ### Contact
 
