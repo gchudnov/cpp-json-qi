@@ -15,3 +15,8 @@ A C++ JSON reader-writer, implemented with Boost.Spirit
 
 * [Wiki](https://github.com/gchudnov/cpp-json-qi/wiki)
 
+
+### Tested compilers
+
+* Linux (x86/64)
+   * GCC 4.8, Boost 1.54
