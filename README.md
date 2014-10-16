@@ -24,7 +24,7 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 ### Building tests
 ```
 cd cpp-json-qi
-ccmake .
+cmake .
 make
 ```
 
