@@ -123,7 +123,7 @@ TEST(JsonInvalidCast, CanBeDetected) {
   {
     json_value var1 = std::string("test");
     json_number num = to_number(var1);
-    num;
+    (void)num;
 
     FAIL() << "Must throw bad_get exception:";
   }

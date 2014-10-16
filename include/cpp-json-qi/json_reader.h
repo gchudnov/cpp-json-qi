@@ -19,7 +19,6 @@
 #include <boost/fusion/container/vector.hpp>
 #include <boost/fusion/include/at_c.hpp>
 
-
 namespace jsonqi {
 
   namespace {
@@ -122,22 +121,22 @@ namespace jsonqi {
 
   public:
     void on_object_begin(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::open_curly_bracket()); ch;
+      assert(ch == symbols::open_curly_bracket()); (void)ch;
       this->add_begin(object_type());
     }
 
     void on_object_end(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::close_curly_bracket()); ch;
+      assert(ch == symbols::close_curly_bracket()); (void)ch;
       this->add_end();
     }
 
     void on_array_begin(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::open_square_bracket()); ch;
+      assert(ch == symbols::open_square_bracket()); (void)ch;
       this->add_begin(array_type());
     }
 
     void on_array_end(char_type ch, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type) {
-      assert(ch == symbols::close_square_bracket()); ch;
+      assert(ch == symbols::close_square_bracket()); (void)ch;
       this->add_end();
     }
 

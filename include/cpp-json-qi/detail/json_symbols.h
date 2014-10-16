@@ -5,15 +5,15 @@
 #include <cwctype>
 
 #if defined(_MSC_VER)
-#pragma warning( push )
+#pragma warning(push)
 // disable warning from boost headers
-#pragma warning( disable:4459 )
+#pragma warning(disable:4459)
 #endif
 
 #include <boost/spirit/include/qi_string.hpp>
 
 #if defined(_MSC_VER)
-#pragma warning( pop )
+#pragma warning(pop)
 #endif
 
 

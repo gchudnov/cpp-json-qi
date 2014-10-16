@@ -5,7 +5,7 @@ using namespace jsonqi;
 
 TEST(JsonValue, CanBeConvertedToNull) {
   json_value jval = nullptr;
-  nullptr_t v1 = to_null(jval);
+  std::nullptr_t v1 = to_null(jval);
   ASSERT_TRUE(v1 == nullptr);
 }
 
