@@ -20,3 +20,11 @@ A C++ JSON reader-writer, implemented with Boost.Spirit
 
 * Linux (x86/64)
    * GCC 4.8, Boost 1.54
+
+### Contact
+
+[Grigoriy Chudnov] (mailto:g.chudnov@gmail.com)
+
+### License
+
+Distributed under the [The MIT License (MIT)](https://github.com/gchudnov/cpp-json-qi/blob/master/LICENSE).
