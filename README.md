@@ -1,7 +1,7 @@
 cpp-json-qi
 ===========
 
-A C++ JSON reader-writer, implemented with Boost.Spirit
+A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Directories
 
