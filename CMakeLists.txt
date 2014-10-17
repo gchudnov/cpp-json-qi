@@ -7,6 +7,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
+include_directories(include)
+
 set(SOURCE_TEST_FILES
     include/cpp-json-qi/detail/json_format.h
     include/cpp-json-qi/detail/json_symbols.h
@@ -25,4 +27,3 @@ set(SOURCE_TEST_FILES
 
 add_executable(run_tests ${SOURCE_TEST_FILES})
 target_link_libraries(run_tests ${GTEST_LIBRARIES} pthread)
-

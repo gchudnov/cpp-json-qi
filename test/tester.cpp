@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+// windows
 //#pragma comment(lib, "gtestd.lib")
 
 int main(int argc, char* argv[])
