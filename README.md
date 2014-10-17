@@ -22,6 +22,9 @@ A C++ JSON header-only library, implemented with Boost.Spirit
    * Clang 3.4, Boost 1.54
 
 ### Building tests
+
+cpp-json-qi tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
+
 ```
 cd cpp-json-qi
 cmake .
