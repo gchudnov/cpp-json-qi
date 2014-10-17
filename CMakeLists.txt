@@ -18,6 +18,7 @@ set(SOURCE_TEST_FILES
     include/cpp-json-qi/json_reader.h
     include/cpp-json-qi/json_types.h
     include/cpp-json-qi/json_writer.h
+    test/suites/test_access.cpp
     test/suites/test_basic.cpp
     test/suites/test_compare.cpp
     test/suites/test_conv.cpp
