@@ -1,41 +1,60 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(cpp_json_qi)
+
 enable_testing()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+set(WARNINGS)
 
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+# Platform
+if(UNIX)
+  option(BUILD_TESTS "Build tests." ON)
+  option(BUILD_SAMPLES "Build samples." ON)
+elseif(WIN32)
+  option(BUILD_TESTS "Build tests." ON)
+  option(BUILD_SAMPLES "Build samples." ON)
+
+  add_definitions(-DUNICODE)
+else()
+  message(FATAL_ERROR "-- Unsupported Build Platform.")
+endif()
+
+# Compiler
+if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+  message("-- Setting clang options")
+
+  set(WARNINGS "-Wall -Wextra")
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
+elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
+  message("-- Setting gcc options")
+
+  set(WARNINGS "-Wall -Wextra")
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
+else()
+  message("-- Unknown compiler, success is doubtful.")
+endif()
+
+# Reconfigure final output directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 include_directories(include)
 
-set(SOURCE_TEST_FILES
-    include/cpp-json-qi/detail/json_format.h
-    include/cpp-json-qi/detail/json_symbols.h
-    include/cpp-json-qi/json.h
-    include/cpp-json-qi/json_error.h
-    include/cpp-json-qi/json_reader.h
-    include/cpp-json-qi/json_types.h
-    include/cpp-json-qi/json_writer.h
-    test/suites/test_access.cpp
-    test/suites/test_basic.cpp
-    test/suites/test_compare.cpp
-    test/suites/test_conv.cpp
-    test/suites/test_nonprintable.cpp
-    test/suites/test_read.cpp
-    test/suites/test_write.cpp
-    test/tester.cpp)
+if(BUILD_TESTS)
+  add_subdirectory(test)
+endif()
 
-add_executable(run_tests ${SOURCE_TEST_FILES})
-target_link_libraries(run_tests ${GTEST_LIBRARIES} pthread)
+if(BUILD_SAMPLES)
+  add_subdirectory(examples)
+endif()
 
-add_executable(pretty_json examples/pretty_json.cpp)
-
-add_test(TestAll bin/run_tests)
-
-
+# Clean the entire build directory
 add_custom_target(clean-all
-   COMMAND ${CMAKE_BUILD_TOOL} clean
-   COMMAND ${CMAKE_COMMAND} -P clean-all.cmake
+ COMMAND ${CMAKE_BUILD_TOOL} clean
+ COMMAND ${CMAKE_COMMAND} -P ${CMAKE_BINARY_DIR}/../clean-all.cmake
 )
