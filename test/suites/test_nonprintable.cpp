@@ -17,7 +17,7 @@ TEST(ASCIICharacters, CanBeWritten) {
   ASSERT_EQ(std::string("[ \"\\u00c3\\u00a4\\u00c3\\u00b6\\u00c3\\u00bc\\u00c3\\u009f\" ]"), actual);
 }
 
-TEST(WideCharacters, CanBeWritten) {
+TEST(WideCharacters, DISABLED_CanBeWritten) {
   wjson_array arr;
   arr.push_back(wjson_string(L"äöüß")); // UTF-8
 
