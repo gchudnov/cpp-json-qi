@@ -13,7 +13,7 @@ elseif(WIN32)
   option(BUILD_TESTS "Build tests." ON)
   option(BUILD_SAMPLES "Build samples." ON)
 
-  add_definitions(-DUNICODE)
+  add_definitions(-DUNICODE -D_UNICODE)
 else()
   message(FATAL_ERROR "-- Unsupported Build Platform.")
 endif()
