@@ -32,7 +32,8 @@ This is a header only library, in order to use it make the cpp-json-qi-`include`
 
 ### Building Tests & Examples
 
-cpp-json-qi tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
+This project tests and example use the Cross-platform Make ([CMake](http://www.cmake.org/)) build system.
+Tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
 
 #### Linux
 
