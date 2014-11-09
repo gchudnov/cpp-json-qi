@@ -5,9 +5,9 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Directories
 
-* **build** - build directory for tests & examples
-* **examples** - cpp-json-qi examples
-* **include** - the source code of cpp-json-qi
+* **build** - directory for tests & examples
+* **examples** - examples source code
+* **include** - the source code of the library
 * **test** - test source code
 
 ### More information
