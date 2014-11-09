@@ -24,7 +24,7 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Installation
 
-This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and  include the header file in your source file:
+This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and  include the header file in your source code:
 
 ```c++
 #include "cpp-json-qi/json.h"
@@ -32,7 +32,7 @@ This is a header only library, in order to use it make the cpp-json-qi-`include`
 
 ### Building Tests & Examples
 
-This project tests and example use the Cross-platform Make ([CMake](http://www.cmake.org/)) build system.
+This project tests and examples use the Cross-platform Make ([CMake](http://www.cmake.org/)) build system.
 Tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
 
 #### Linux
