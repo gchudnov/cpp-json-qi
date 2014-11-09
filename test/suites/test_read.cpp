@@ -97,7 +97,7 @@ TEST(ReadError, CanBeDetected) {
     wjson_value val;
     wiss >> val;
 
-    FAIL() << "Must throw exception:";
+    FAIL() << "Must throw exception";
   }
   catch (std::exception& /*ex*/)
   {
