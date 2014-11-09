@@ -5,10 +5,10 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Directories
 
-* **bin** - project executables (tests & examples)
+* **build** - build directory for tests & examples
 * **examples** - cpp-json-qi examples
-* **include** - the sourcecode of cpp-json-qi
-* **test** - cpp-json-qi unit tests
+* **include** - the source code of cpp-json-qi
+* **test** - test source code
 
 ### More information
 
@@ -19,30 +19,40 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 * Linux (x86/64)
    * GCC 4.8, Boost 1.54
    * Clang 3.4, Boost 1.54
+* Windows (x86/64)
+   * MSVC 14, Boost 1.57
 
-### Building
+### Installation
+
+This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and  include the header file in your source file:
+
+```c++
+#include "cpp-json-qi/json.h"
+```
+
+### Building Tests & Examples
 
 cpp-json-qi tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
 
-To build all tests & examples:
+#### Linux
+
+The recommended way is to create 'out of source' build:
 
 ```
-cd cpp-json-qi
-cmake .
-make
-```
-
-### Building 'out of source'
-
-To create `out of source` build, invoke: 
-
-```
-cd cpp-json-qi
-mkdir build
-cd build
+cd cpp-json-qi/build
 cmake ..
 make
 ```
+
+#### Windows
+
+If using Visual Studio:
+ 
+    Follow the directions at the link for running CMake on Windows:
+    http://www.cmake.org/runningcmake/
+    
+    NOTE: Select the "build" folder as the location to build the binaries.
+
 
 ### Deleting all the files that a Make & CMake has produced 
 
