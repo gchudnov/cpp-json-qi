@@ -39,7 +39,7 @@ Tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
 
 The recommended way is to create 'out of source' build:
 
-```
+```bash
 cd cpp-json-qi/build
 cmake ..
 make
