@@ -204,18 +204,21 @@ namespace jsonqi {
 
     typedef detail::json_symbols<CharT>  symbols;
     typedef typename symbols::space_type qi_space_type;
+    typedef typename symbols::char_type  qi_char_type;
 
     typedef json_semantic_actions<Iterator, CharT> actions_type;
 
     typedef boost::spirit::qi::rule<Iterator, qi_space_type>                     rule_type;
     typedef boost::spirit::qi::rule<Iterator, char_vector_type(), qi_space_type> chars_rule_type;
-    typedef boost::spirit::qi::symbols<char_type, char_type>                     esc_char_type;
+    typedef boost::spirit::qi::rule<Iterator, char_type()>                       esc_char_type;
 
     typedef std::function<void(double, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type)> action_number_callback;
     typedef std::function<void(char_type, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type)> action_char_callback;
     typedef std::function<void(bool, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type)> action_bool_callback;
     typedef std::function<void(const char_vector_type&, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type)> action_chars_callback;
     typedef std::function<void(const string_type&, boost::spirit::qi::unused_type, boost::spirit::qi::unused_type)> action_string_callback;
+
+    const qi_char_type qi_char_;
 
     actions_type& ractions;
 
@@ -248,16 +251,7 @@ namespace jsonqi {
       namespace qi = boost::spirit::qi;
       namespace repo = boost::spirit::repository;
 
-      resc_char.add(symbols::tag_quotation_mark_start(), symbols::quotation_mark())
-        (symbols::tag_reverse_solidus_start(), symbols::reverse_solidus())
-        (symbols::tag_solidus_start(), symbols::solidus())
-        (symbols::tag_backspace_start(), symbols::backspace())
-        (symbols::tag_formfeed_start(), symbols::formfeed())
-        (symbols::tag_newline_start_start(), symbols::newline())
-        (symbols::tag_carriage_return_start(), symbols::carriage_return())
-        (symbols::tag_horizontal_tab_start(), symbols::horizontal_tab())
-        //(symbols::tag_non_printable_start(), symbols::)
-        ;
+      resc_char = symbols::reverse_solidus() >> qi_char_(symbols::escape_chars());
 
       on_null = (std::bind(&actions_type::on_null_value, std::ref(ractions), std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
       on_bool = (std::bind(&actions_type::on_bool_value, std::ref(ractions), std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -273,9 +267,7 @@ namespace jsonqi {
       rstring
         = qi::lexeme
         [
-          repo::confix(symbols::quotation_mark(), symbols::quotation_mark())[*(resc_char | (qi::char_ - symbols::quotation_mark()))]
-          //qi::omit[symbols::quotation_mark] >> *(resc_char | (qi::char_ - symbols::quotation_mark)) >> qi::omit[symbols::quotation_mark]
-          //repo::confix(symbols::quotation_mark, symbols::quotation_mark)[*(qi::char_ - symbols::quotation_mark)]
+          repo::confix(symbols::quotation_mark(), symbols::quotation_mark())[*(resc_char | (qi_char_ - symbols::quotation_mark()))]
         ]
       ;
 
@@ -288,14 +280,14 @@ namespace jsonqi {
         ;
 
       rarray
-        = qi::char_(symbols::open_square_bracket())[on_array_begin]
+        = qi_char_(symbols::open_square_bracket())[on_array_begin]
             > *relements
-            > qi::char_(symbols::close_square_bracket())[on_array_end]
+            > qi_char_(symbols::close_square_bracket())[on_array_end]
             ;
 
       rpair
         = rstring[on_pair_key]
-            > qi::char_(symbols::colon())
+            > qi_char_(symbols::colon())
             > rvalue
             ;
 
@@ -304,9 +296,9 @@ namespace jsonqi {
         ;
 
       robject
-        = qi::char_(symbols::open_curly_bracket())[on_object_begin]
+        = qi_char_(symbols::open_curly_bracket())[on_object_begin]
             > *rmembers
-            > qi::char_(symbols::close_curly_bracket())[on_object_end]
+            > qi_char_(symbols::close_curly_bracket())[on_object_end]
             ;
 
       rvalue

@@ -10,6 +10,7 @@
 #pragma warning(disable:4459)
 #endif
 
+#include <boost/spirit/include/qi_char_.hpp>
 #include <boost/spirit/include/qi_string.hpp>
 
 #if defined(_MSC_VER)
@@ -27,6 +28,7 @@ namespace jsonqi {
     struct json_symbols<char>
     {
       typedef boost::spirit::standard::space_type space_type;
+      typedef boost::spirit::standard::char_type  char_type;
 
       static const char* const tag_null() { return "null"; }
       static const char* const tag_true() { return "true"; }
@@ -62,6 +64,8 @@ namespace jsonqi {
       static const char* const tag_horizontal_tab_start() { return "\\t"; }
       static const char* const tag_non_printable_start() { return "\\u"; }
 
+      static const char* const escape_chars() { return "\"\\/\b\f\n\r\t"; }
+
       static bool isprint(char ch)
       {
         return (std::isprint(static_cast<int>(static_cast<unsigned char>(ch))) != 0);
@@ -72,6 +76,7 @@ namespace jsonqi {
     struct json_symbols<wchar_t>
     {
       typedef boost::spirit::standard_wide::space_type space_type;
+      typedef boost::spirit::standard_wide::char_type  char_type;
 
       static const wchar_t* const tag_null() { return L"null"; }
       static const wchar_t* const tag_true() { return L"true"; }
@@ -106,6 +111,8 @@ namespace jsonqi {
       static const wchar_t* const tag_carriage_return_start() { return L"\\r"; }
       static const wchar_t* const tag_horizontal_tab_start() { return L"\\t"; }
       static const wchar_t* const tag_non_printable_start() { return L"\\u"; }
+
+      static const wchar_t* const escape_chars() { return L"\"\\/\b\f\n\r\t"; }
 
       static bool isprint(wchar_t ch)
       {
