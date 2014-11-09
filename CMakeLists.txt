@@ -19,7 +19,7 @@ else()
 endif()
 
 # Compiler
-if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
   message("-- Setting clang options")
 
   set(WARNINGS "-Wall -Wextra")
@@ -27,13 +27,15 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
-elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
   message("-- Setting gcc options")
 
   set(WARNINGS "-Wall -Wextra")
 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+  message("-- Setting msvc options")
 else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
