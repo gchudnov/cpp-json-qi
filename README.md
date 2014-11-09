@@ -55,7 +55,7 @@ If using Visual Studio:
     NOTE: Select the "build" folder as the location to build the binaries.
 
 
-### Deleting all the files that a Make & CMake has produced 
+### Deleting all files Make & CMake created 
 
 ```
 make clean-all
