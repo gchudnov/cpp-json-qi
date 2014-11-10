@@ -6,4 +6,5 @@ compiler:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y libboost-all-dev libgtest-dev libc++-dev
+  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
 script: ./configure && cd build && make && make test
