@@ -49,6 +49,7 @@ install:
   - cd gtest-1.7.0
   - sudo cmake .
   - sudo cmake --build .
+  - sudo cp -R ./include /usr
   - sudo mv libg* /usr/local/lib/
   - cd -
 

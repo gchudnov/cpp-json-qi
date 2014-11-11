@@ -33,7 +33,7 @@ This is a header only library, in order to use it make the cpp-json-qi-`include`
 ### Building Tests & Examples
 
 This project tests and examples use the Cross-platform Make ([CMake](http://www.cmake.org/)) build system.
-Tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
+Tests depend on [Google Test Framework](https://code.google.com/p/googletest/). gtest-1.7.0 is recommended.
 
 #### Linux
 
