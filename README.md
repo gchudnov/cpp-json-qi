@@ -1,4 +1,4 @@
-cpp-json-qi
+cpp-json-qi [![Build Status](https://travis-ci.org/gchudnov/cpp-json-qi.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-json-qi)
 ===========
 
 A C++ JSON header-only library, implemented with Boost.Spirit
