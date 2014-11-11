@@ -22,7 +22,6 @@ install:
 
   # g++4.8
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
 
   # clang 3.4
   - if [ "$CXX" == "clang++" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.4; fi
@@ -39,8 +38,6 @@ install:
   - if [ "$CXX" == "clang++" ]; then cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so; fi
   - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
   - if [ "$CXX" == "clang++" ]; then popd; fi
-
-  - if [ "$CXX" == "clang++" ]; then export CXX="clang++"; fi
 
   # libc++abi
   - if [ "$CXX" == "clang++" ]; then pushd .; fi
@@ -61,8 +58,9 @@ install:
   - curl -OL https://googletest.googlecode.com/files/gtest-1.7.0.zip
   - unzip gtest-1.7.0.zip
   - cd gtest-1.7.0
-  - if [ "$CXX" = "g++" ]; then cmake .; fi
-  - if [ "$CXX" == "clang++" ]; then CC=clang CXX=clang++ cmake .; fi
+  - cmake .
+  #- if [ "$CXX" = "g++" ]; then cmake .; fi
+  #- if [ "$CXX" == "clang++" ]; then CC=clang CXX=clang++ cmake .; fi
   - sudo cmake --build .
   - sudo cp -R ./include /usr
   - sudo mv libg* /usr/local/lib/
