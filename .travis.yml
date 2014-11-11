@@ -52,7 +52,7 @@ install:
   - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++abi.so.1.0 libc++abi.so.1 && cd $cwd; fi
   - if [ "$CXX" == "clang++" ]; then popd; fi
 
-  - if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-std=c++0x -stdlib=libc++ -lc++abi"; fi
+  - if [ "$CXX" == "clang++" ]; then export LDFLAGS="-stdlib=libc++ -lc++abi"; fi
 
   # Boost
   - sudo apt-get install -y libboost-all-dev
