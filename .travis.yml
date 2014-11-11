@@ -61,7 +61,8 @@ install:
   - curl -OL https://googletest.googlecode.com/files/gtest-1.7.0.zip
   - unzip gtest-1.7.0.zip
   - cd gtest-1.7.0
-  - sudo cmake .
+  - if [ "$CXX" = "g++" ]; then cmake .; fi
+  - if [ "$CXX" == "clang++" ]; then CC=clang CXX=clang++ cmake .; fi
   - sudo cmake --build .
   - sudo cp -R ./include /usr
   - sudo mv libg* /usr/local/lib/
