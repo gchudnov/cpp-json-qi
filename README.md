@@ -1,5 +1,5 @@
-cpp-json-qi [![Build Status](https://travis-ci.org/gchudnov/cpp-json-qi.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-json-qi)
-===========
+# cpp-json-qi [![Build Status](https://travis-ci.org/gchudnov/cpp-json-qi.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-json-qi)
+
 
 A C++ JSON header-only library, implemented with Boost.Spirit
 
@@ -24,7 +24,7 @@ A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Installation
 
-This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and  include the header file in your source code:
+This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and include the header file in your source code:
 
 ```c++
 #include "cpp-json-qi/json.h"
@@ -47,7 +47,7 @@ make
 
 #### Windows
 
-If using Visual Studio:
+Visual Studio:
  
     Follow the directions at the link for running CMake on Windows:
     http://www.cmake.org/runningcmake/
