@@ -1,7 +1,8 @@
 # cpp-json-qi [![Build Status](https://travis-ci.org/gchudnov/cpp-json-qi.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-json-qi)
 
+A C++ header-only library for parsing, formatting, storing and validating JSON documents.
+Supports JSON's basic types: Number, String, Boolean, Array, Object, null.
 
-A C++ JSON header-only library, implemented with Boost.Spirit
 
 ### Directories
 
